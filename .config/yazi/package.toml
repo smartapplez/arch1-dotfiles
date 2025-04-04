@@ -1,0 +1,5 @@
+[plugin]
+deps = []
+
+[flavor]
+deps = [{ use = "PinThePenguine/sunset", rev = "181acd4" }, { use = "bennyyip/gruvbox-dark", rev = "b4cc9f2" }, { use = "marcosvnmelo/kanagawa-dragon", rev = "2ddff30" }]

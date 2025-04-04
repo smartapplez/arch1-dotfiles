@@ -1,0 +1,4 @@
+[[manager.prepend_keymap]]
+on   = [ "g", "w" ]
+run  = "cd /home/Arieldynamic/GOOGLE-DRIVE/School-Drive/4_TAMU_Files/6_Spring_2025_Semester_Files"
+desc = "Go to WORK_DIR"
