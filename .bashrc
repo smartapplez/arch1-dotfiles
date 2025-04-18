@@ -27,3 +27,5 @@ function cpwd(){
 	wl-copy $(pwd)
 	echo "Copied $(pwd) to Clipboard!"
 }
+
+export PATH=$PATH:/home/Arieldynamic/.spicetify
