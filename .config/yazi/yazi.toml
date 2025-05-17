@@ -22,3 +22,17 @@ play = [
 
 [preview]
 image_delay = 100
+
+# Adds bulk-renaming support (opens a text file and renames files in bulk)
+[[opener.bulk-rename]]
+run   = 'nvim "$@"'
+block = true
+
+[[open.prepend_rules]]
+name = "bulk-rename.txt"
+use  = "bulk-rename"
+
+[[manager.prepend_keymap]]
+on   = "!"
+run  = 'shell "$SHELL" --block'
+desc = "Open shell here"

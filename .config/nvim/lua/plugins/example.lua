@@ -1,3 +1,6 @@
+---@module "lazy"
+---@module "yazi"
+---@type LazySpec
 -- since this is just an example spec, don't actually load anything here and return an empty spec
 -- stylua: ignore
 if true then return {} end
@@ -19,7 +22,21 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox-material",
+      colorscheme = "gruvbox",
+    },
+  },
+
+  -- Adding dependencies for lazy.nvim
+  { "nvim-lua/plenary.nvim", lazy = true },
+
+  {
+    "mikavilpas/yazi.nvim",
+    ---@type YaziConfig | {}
+    opts = {},
+    cmd = {
+      "Yazi",
+      "Yazi cwd",
+      "Yazi toggle",
     },
   },
 
