@@ -28,6 +28,10 @@ function cpwd() {
   echo "Copied $(pwd) to Clipboard!"
 }
 
+function syssleep() {
+  systemctl suspend
+}
+
 export MANPAGER='nvim +Man!'
 export PATH=$PATH:/home/Arieldynamic/.spicetify
 
