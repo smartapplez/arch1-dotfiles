@@ -95,7 +95,7 @@ function git_init() {
   fi
 }
 
-function md() { mkdir -p "$1" && cd "$1"; }
+function mkcd() { mkdir -p "$1" && cd "$1"; }
 
 export MANPAGER='nvim +Man!'
 export PATH=$PATH:/home/Arieldynamic/.spicetify
