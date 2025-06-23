@@ -90,8 +90,8 @@ function git_init() {
     builtin cd "$1"
     pwd
     git init
-    touch readme.md .gitignore LICENSE
-    echo "# $(basename $PWD)" >>readme.md
+    touch README.md .gitignore LICENSE
+    echo "# $(basename $PWD)" >>README.md
   fi
 }
 
