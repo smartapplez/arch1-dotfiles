@@ -11,8 +11,8 @@ configuration {
 window {
   location:                 northeast;
   anchor:                   north;
-  x-offset:                 -100px;
-  y-offset:                 30px;
+  x-offset:                 0px;
+  y-offset:                 0px;
   width:                    150px;
   border:                   2px;
   border-radius:            10px;
