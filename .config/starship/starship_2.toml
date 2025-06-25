@@ -251,66 +251,6 @@ success_symbol = '[](bold green)'
 error_symbol = '[✘](bold red)'
 vimcmd_symbol = '[V](bold green)'
 
-[[battery.display]] # 'bold red' style and discharging_symbol when capacity is between 0% and 10%
-threshold = 10
-style = 'bold purple'
-discharging_symbol = '󰂎 '
-charging_symbol = '󰢟 '
-
-[[battery.display]] # 'bold red' style and discharging_symbol when capacity is between 10% and 20%
-threshold = 20
-style = 'bold red'
-discharging_symbol = '󰁺 '
-charging_symbol = '󰢜 '
-
-[[battery.display]] 
-threshold = 25
-style = 'bold red'
-discharging_symbol = '󰁻 '
-charging_symbol = '󰂆 '
-
-[[battery.display]] 
-threshold = 30
-style = 'bold yellow'
-discharging_symbol = '󰁻 '
-charging_symbol = '󰂆 '
-
-[[battery.display]] 
-threshold = 40
-style = 'bold yellow'
-discharging_symbol = '󰁼 '
-charging_symbol = '󰂇 '
-
-[[battery.display]] 
-threshold = 45
-style = 'bold yellow'
-discharging_symbol = '󰁽 '
-charging_symbol = '󰂈 '
-
-[[battery.display]] 
-threshold = 50
-style = 'bold green'
-discharging_symbol = '󰁽 '
-charging_symbol = '󰂈 '
-
-[[battery.display]] 
-threshold = 70
-style = 'bold green'
-discharging_symbol = '󰂀 '
-charging_symbol = '󰢞 '
-
-[[battery.display]] 
-threshold = 90
-style = 'bold green'
-discharging_symbol = '󰂁 '
-charging_symbol = '󰂊 '
-
-[[battery.display]] 
-threshold = 100
-style = 'bold green'
-discharging_symbol = '󱈏 '
-charging_symbol = '󰂄 '
-
 [env_var.yazi_level]
 description = "Indicate the shell was launched by `yazi`"
 variable = "YAZI_LEVEL"

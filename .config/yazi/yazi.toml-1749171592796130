@@ -1,0 +1,38 @@
+# yazi.toml
+[manager]
+show_hidden = false
+
+[opener]
+edit = [
+	{ run = '${EDITOR:=nvim} "$@"', desc = "nvim", block = true, for = "unix" },
+	{ run = 'code "$@"', desc = "VS Code", orphan = true, block = false, for = "unix" },
+	{ run = 'vim "$@"', desc = "vim", block = true, for = "unix" },
+	{ run = 'code %*', orphan = true, desc = "code", for = "windows" },
+    	{ run = 'code -w %*', block = true, desc = "code (block)", for = "windows" },
+]
+open = [
+	{ run = 'google-chrome-stable --new-tab "$@"', desc = "Google Chrome", orphan = true, block = false, for = "linux" },
+	{ run = 'xdg-open "$1"', desc = "XDG Open", for = "linux" },
+    	{ run = 'open "$@"', desc = "Open", for = "macos" },
+    	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
+]
+play = [
+	{ run = 'vlc "$@"', orphan = true, for = "unix"},
+]
+
+[preview]
+image_delay = 100
+
+# Adds bulk-renaming support (opens a text file and renames files in bulk)
+[[opener.bulk-rename]]
+run   = 'nvim "$@"'
+block = true
+
+[[open.prepend_rules]]
+name = "bulk-rename.txt"
+use  = "bulk-rename"
+
+[[manager.prepend_keymap]]
+on   = "!"
+run  = 'shell "$SHELL" --block'
+desc = "Open shell here"

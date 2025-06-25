@@ -78,11 +78,13 @@
     "on-scroll-up": "hyprctl dispatch workspace -1",
     "on-scroll-down": "hyprctl dispatch workspace +1",
     "persistent-workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": [],
-      "5": []
+      //"1": [],
+      //"2": [],
+      //"3": [],
+      //"4": [],
+      //"5": []
+      "eDP-1": [ 1, 2, 3, 4, 5],
+      "HDMI-A-1": [ 6, 7, 8, 9, 10]
     }
   },
 
@@ -290,7 +292,7 @@
     "format": "{}",
     "tooltip": true,
     "on-click": "~/.config/waybar/scripts/wifi-menu.sh",
-    "on-click-right": "kitty --title '󰤨  Network Manager TUI' bash -c nmtui",
+    "on-click-right": "ghostty --title='󰤨  Network Manager TUI' -e nmtui",
     "interval": 1,
     "min-length": 1,
     "max-length": 1
@@ -314,7 +316,7 @@
       "{device_alias}: {device_battery_percentage}%",
 
     "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
-    "on-click-right": "kitty --title '󰂯  Bluetooth TUI' bash -c bluetui",
+    "on-click-right": "ghostty --title='󰂯  Bluetooth TUI' -e bluetui",
     "interval": 1,
     "min-length": 1,
     "max-length": 1
@@ -337,7 +339,8 @@
     "return-type": "json",
     "format": "{}",
     "tooltip": "{tooltip}",
-    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl play-pause",
+    "on-click": "", // Make this pull up a player-control widget from rofi
     "min-length": 5,
     "max-length": 35
   },
@@ -354,7 +357,7 @@
 
     "tooltip": true,
     "tooltip-format": "Device: {desc}",
-    "on-click": "~/.config/waybar/scripts/volume-control.sh -o m",
+    "on-click": "~/.config/waybar/scripts/volume-control.sh -o m", // Make this pull up a volume control widget from rofi
     "on-scroll-up": "~/.config/waybar/scripts/volume-control.sh -o i",
     "on-scroll-down": "~/.config/waybar/scripts/volume-control.sh -o d",
     "on-click-right": "bash $(qjackctl)", 
@@ -369,6 +372,7 @@
     "tooltip": true,
     "on-scroll-up": "~/.config/waybar/scripts/brightness-control.sh -o i",
     "on-scroll-down": "~/.config/waybar/scripts/brightness-control.sh -o d",
+    "on-click": "", // Make this pull up a rofi widget about brightness-control
     "interval": 1,
     "min-length": 6,
     "max-length": 6
@@ -381,6 +385,8 @@
       "warning": 30,
       "critical": 15
     },
+
+    "on-click": "", // Make this pull up a rofi widget about power control
 
     "format": "{icon} {capacity}%",
     "format-icons": ["󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂"],
