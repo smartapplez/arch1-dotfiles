@@ -12,7 +12,8 @@ edit = [
 ]
 open = [
 	{ run = 'google-chrome-stable --new-tab "$@"', desc = "Google Chrome", orphan = true, block = false, for = "linux" },
-	{ run = 'xdg-open "$1"', desc = "XDG Open", for = "linux" },
+	{ run = 'xdg-open "$1"', orphan =  true, desc = "XDG Open", for = "linux" },
+	{ run = 'sioyek "$1" --new-window', desc = "Sioyek", orphan = true, block = false, for = "linux" },
     	{ run = 'open "$@"', desc = "Open", for = "macos" },
     	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
 ]

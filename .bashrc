@@ -95,7 +95,29 @@ function git_init() {
   fi
 }
 
+# Toggle Do Not Disturb Mode
+dnd() {
+  if makoctl mode | grep -Fxq 'do-not-disturb'; then
+    makoctl mode -r do-not-disturb
+    echo "🔔 Notifications ENABLED"
+  else
+    makoctl mode -a do-not-disturb
+    echo "🔕 Do Not Disturb ENABLED"
+  fi
+}
+
+# Check Do Not Disturb Status
+dndstatus() {
+  if makoctl mode | grep -Fxq 'do-not-disturb'; then
+    echo "🔕 Do Not Disturb is currently ON"
+  else
+    echo "🔔 Do Not Disturb is currently OFF"
+  fi
+}
+
 function mkcd() { mkdir -p "$1" && cd "$1"; }
+
+function cdcp() { cd $(wl-paste); }
 
 export MANPAGER='nvim +Man!'
 export PATH=$PATH:/home/Arieldynamic/.spicetify
