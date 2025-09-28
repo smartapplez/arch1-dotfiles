@@ -1,0 +1,6 @@
+tmux-gruvbox
+tmux-resurrect
+tmux-sensible
+tmux-yank
+tpm
+vim-tmux-navigator
