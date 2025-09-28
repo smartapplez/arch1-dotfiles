@@ -5,7 +5,7 @@ exec_prefix="${prefix}"
 xrdb="xrdb"
 xinitdir="/etc/X11/xinit"
 xclock="xclock"
-xterm="xterm"
+xterm="ghostty"
 wm="i3"
 xmodmap="xmodmap"
 
@@ -50,7 +50,7 @@ if [ -d "$xinitdir"/xinitrc.d ]; then
 fi
 
 "$wm" &
-"$xclock" -geometry 50x50-1+1 &
-"$xterm" -geometry 80x50+494+51 &
-"$xterm" -geometry 80x20+494-0 &
-exec "$xterm" -geometry 80x66+0+0 -name login
+#"$xclock" -geometry 50x50-1+1 &
+#"$xterm" -geometry 80x50+494+51 &
+#"$xterm" -geometry 80x20+494-0 &
+"$xterm"
