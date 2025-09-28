@@ -34,6 +34,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 exec --no-startup-id ghostty
+exec --no-startup-id redshift -P -O 3500
+exec --no-startup-id picom
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -41,6 +43,9 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+bindsym XF86MonBrightnessUp, exec --no-startup-id brightnessctl s 10%+
+bindsym XF86MonBrightnessDown, exec --no-startup-id brightnessctl s 10%-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -51,6 +56,25 @@ tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec ghostty
+
+# Take a screenshot of whole screen and saves it in ~/Pictures/Screenshots
+bindsym Print exec scrot -F '/home/Arieldynamic/Pictures/Screenshots/Screenshot-From-%Y-%m-%d_$wx$h.png'
+# Take a screenshot of whole screen and saves it in clipboard
+bindsym Shift+Print exec scrot -F "-" | xclip -selection clipboard -t image/png
+
+# Select a region screenshot, and saves it in ~/Pictures/Screenshots/
+bindsym $mod+Print exec scrot -s -f -F '/home/Arieldynamic/Pictures/Screenshots/Screenshot-From-%Y-%m-%d_$wx$h.png'
+
+# Select a region screenshot, and saves it in clipboard
+bindsym $mod+Shift+Print exec scrot -s -f -F "-" | xclip -selection clipboard -t image/png
+
+bindsym $mod+Shift+S exec sh ~/.config/i3/screenshot.sh
+
+# bindsym $mod+PERIOD exec sh ~/.config/rofi/scripts/rofi-emoji-picker-launcher.sh
+
+#Packages installed
+#xclip scrot redshift
+#picom
 
 # kill focused window
 bindsym $mod+c kill
@@ -102,7 +126,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+F floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle

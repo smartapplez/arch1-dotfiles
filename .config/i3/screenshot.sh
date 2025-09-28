@@ -1,6 +1,7 @@
 #!/bin/sh
 #
 # GUI Screenshot Tool for Wayland Using Zenity, Grim and Slurp
+# Modified by smartapplez to use with scrot (X.org)
 # Last Modification: Thu Nov 14 18:05:37 PM WET 2024
 #
 
@@ -15,27 +16,23 @@ CHOICE=$(zenity --width=450 --height=400 --title "Screenshot" \
   True "whole screen --> save to file" \
   False "part of screen --> save to file" \
   False "whole screen --> clipboard" \
-  False "part of screen --> clipboard") \
-  False "part of screen --> edit --> clipboard")
+  False "part of screen --> clipboard")
+
 # echo $CHOICE
 
 case $CHOICE in
 "whole screen --> save to file")
-  grim "$TMP_DIR/$DEFAULT_FILENAME"
+  sleep 0.5 && scrot -F "$TMP_DIR/$DEFAULT_FILENAME"
   ;;
-"part of the screen --> save to file")
-  slurp | grim -g - "$TMP_DIR/$DEFAULT_FILENAME"
+"part of screen --> save to file")
+  sleep 0.5 && scrot -s -f -F "$TMP_DIR/$DEFAULT_FILENAME"
   ;;
 "whole screen --> clipboard")
-  grim -g - - | wl-copy
+  scrot -F "-" | xclip -selection clipboard -t image/png
   exit
   ;;
 "part of screen --> clipboard")
-  slurp | grim -g - - | wl-copy
-  exit
-  ;;
-"part of screen --> edit --> clipboard")
-  grim -g "$(slurp)" - | swappy -f - -o - | wl-copy
+  scrot -s -f -F "-" | xclip -selection clipboard -t image/png
   exit
   ;;
 "")
@@ -51,9 +48,7 @@ case $? in
 0)
   mv "$TMP_DIR/$DEFAULT_FILENAME" $FILE
   ;;
-1)
-  rm "$TMP_DIR/$DEFAULT_FILENAME"
-  ;;
+1) ;;
 -1)
   echo "An unexpected error has occurred."
   ;;
