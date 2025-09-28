@@ -35,5 +35,8 @@ border-color=#88c0d0
 [summary~="log-.*"]
 border-color=#a3be8c
 
+[mode=do-not-disturb]
+invisible=1
+
 [app-name=lightcord summary~="(.*(^| )orz|ORZ|sto|STO|otl|OTL( |$).*)"]
 invisible=1
