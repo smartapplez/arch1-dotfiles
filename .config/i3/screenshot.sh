@@ -13,25 +13,25 @@ CHOICE=$(zenity --width=450 --height=400 --title "Screenshot" \
   --list --radiolist \
   --column "Pick" \
   --column "Choice" \
-  True "whole screen --> save to file" \
-  False "part of screen --> save to file" \
-  False "whole screen --> clipboard" \
-  False "part of screen --> clipboard")
+  True "1 whole screen --> save to file" \
+  False "2 part of screen --> save to file" \
+  False "3 whole screen --> clipboard" \
+  False "4 part of screen --> clipboard")
 
 # echo $CHOICE
 
 case $CHOICE in
-"whole screen --> save to file")
+"1 whole screen --> save to file")
   sleep 0.5 && scrot -F "$TMP_DIR/$DEFAULT_FILENAME"
   ;;
-"part of screen --> save to file")
+"2 part of screen --> save to file")
   sleep 0.5 && scrot -s -f -F "$TMP_DIR/$DEFAULT_FILENAME"
   ;;
-"whole screen --> clipboard")
+"3 whole screen --> clipboard")
   scrot -F "-" | xclip -selection clipboard -t image/png
   exit
   ;;
-"part of screen --> clipboard")
+"4 part of screen --> clipboard")
   scrot -s -f -F "-" | xclip -selection clipboard -t image/png
   exit
   ;;

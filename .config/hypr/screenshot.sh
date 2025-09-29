@@ -12,29 +12,29 @@ CHOICE=$(zenity --width=450 --height=400 --title "Screenshot" \
   --list --radiolist \
   --column "Pick" \
   --column "Choice" \
-  True "whole screen --> save to file" \
-  False "part of screen --> save to file" \
-  False "whole screen --> clipboard" \
-  False "part of screen --> clipboard") \
-  False "part of screen --> edit --> clipboard")
+  True "1 whole screen --> save to file" \
+  False "2 part of screen --> save to file" \
+  False "3 whole screen --> clipboard" \
+  False "4 part of screen --> clipboard") \
+  False "5 part of screen --> edit --> clipboard")
 # echo $CHOICE
 
 case $CHOICE in
-"whole screen --> save to file")
+"1 whole screen --> save to file")
   grim "$TMP_DIR/$DEFAULT_FILENAME"
   ;;
-"part of the screen --> save to file")
+"2 part of the screen --> save to file")
   slurp | grim -g - "$TMP_DIR/$DEFAULT_FILENAME"
   ;;
-"whole screen --> clipboard")
+"3 whole screen --> clipboard")
   grim -g - - | wl-copy
   exit
   ;;
-"part of screen --> clipboard")
+"4 part of screen --> clipboard")
   slurp | grim -g - - | wl-copy
   exit
   ;;
-"part of screen --> edit --> clipboard")
+"5 part of screen --> edit --> clipboard")
   grim -g "$(slurp)" - | swappy -f - -o - | wl-copy
   exit
   ;;
