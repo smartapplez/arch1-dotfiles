@@ -15,7 +15,7 @@ CHOICE=$(zenity --width=450 --height=400 --title "Screenshot" \
   True "1 whole screen --> save to file" \
   False "2 part of screen --> save to file" \
   False "3 whole screen --> clipboard" \
-  False "4 part of screen --> clipboard") \
+  False "4 part of screen --> clipboard" \
   False "5 part of screen --> edit --> clipboard")
 # echo $CHOICE
 
@@ -23,7 +23,7 @@ case $CHOICE in
 "1 whole screen --> save to file")
   grim "$TMP_DIR/$DEFAULT_FILENAME"
   ;;
-"2 part of the screen --> save to file")
+"2 part of screen --> save to file")
   slurp | grim -g - "$TMP_DIR/$DEFAULT_FILENAME"
   ;;
 "3 whole screen --> clipboard")
@@ -51,9 +51,7 @@ case $? in
 0)
   mv "$TMP_DIR/$DEFAULT_FILENAME" $FILE
   ;;
-1)
-  rm "$TMP_DIR/$DEFAULT_FILENAME"
-  ;;
+1) ;;
 -1)
   echo "An unexpected error has occurred."
   ;;

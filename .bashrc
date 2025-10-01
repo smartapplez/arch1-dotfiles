@@ -36,7 +36,12 @@ function y() {
 
 function cpwd() {
   wl-copy $(pwd)
-  echo "Copied $(pwd) to Clipboard!"
+  echo "Copied $(pwd) to Wl-Clipboard!"
+}
+
+function cpwdx() {
+  pwd | xclip -selection clipboard
+  echo "Copied $(pwd) to X Clipboard"
 }
 
 function cd() {
