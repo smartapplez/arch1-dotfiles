@@ -337,6 +337,10 @@ function cdcp() {
 function tmux-attach() {
   tmux a -t "$@"
 }
+
+function tmux-new-session() {
+  tmux new -s "$@"
+}
 export MANPAGER='nvim +Man!'
 export PATH=$PATH:/home/Arieldynamic/.spicetify
 
