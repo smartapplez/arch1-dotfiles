@@ -21,10 +21,10 @@ CHOICE=$(zenity --width=450 --height=400 --title "Screenshot" \
 
 case $CHOICE in
 "1 whole screen --> save to file")
-  grim "$TMP_DIR/$DEFAULT_FILENAME"
+  sleep 0.5 && grim "$TMP_DIR/$DEFAULT_FILENAME"
   ;;
 "2 part of screen --> save to file")
-  slurp | grim -g - "$TMP_DIR/$DEFAULT_FILENAME"
+  sleep 0.5 && slurp | grim -g - "$TMP_DIR/$DEFAULT_FILENAME"
   ;;
 "3 whole screen --> clipboard")
   grim -g - - | wl-copy
