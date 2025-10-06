@@ -346,6 +346,37 @@ function tmux-attach() {
 function tmux-new-session() {
   tmux new -s "$@"
 }
+
+# Function: log_updates
+# Description: Runs the 'checkupdates' utility and logs the output
+# to a dated file in the user's Documents/upgrade-logs directory.
+# Filename format: YYYY-MM-DD-pacman-syu.txt
+log_updates() {
+  # Get the current date in YYYY-MM-DD format
+  local DATE_TAG=$(date +%F)
+
+  # Define the target directory and file path
+  local LOG_DIR="$HOME/Documents/upgrade-logs"
+  local LOG_FILE="$LOG_DIR/$DATE_TAG-pacman-syu.txt"
+
+  # Ensure the log directory exists. -p flag prevents error if directory already exists.
+  echo "Ensuring log directory exists: $LOG_DIR"
+  mkdir -p "$LOG_DIR"
+
+  # Run checkupdates and redirect the output to the specified log file.
+  # The 2>&1 redirects standard error (2) to standard output (1),
+  # ensuring any error messages from checkupdates are also logged.
+  echo "Running checkupdates and logging output to: $LOG_FILE"
+  checkupdates >"$LOG_FILE" 2>&1
+
+  # Check the exit status of the last command (checkupdates)
+  if [ $? -eq 0 ]; then
+    echo "Successfully logged update information."
+  else
+    echo "Error or Warning during update check. Check $LOG_FILE for details."
+  fi
+}
+
 export MANPAGER='nvim +Man!'
 export PATH=$PATH:/home/Arieldynamic/.spicetify
 
