@@ -49,8 +49,8 @@ if [ -d "$xinitdir"/xinitrc.d ]; then
   unset f
 fi
 
-"$wm" &
+"$wm"
 #"$xclock" -geometry 50x50-1+1 &
 #"$xterm" -geometry 80x50+494+51 &
 #"$xterm" -geometry 80x20+494-0 &
-"$xterm"
+#"$xterm"
