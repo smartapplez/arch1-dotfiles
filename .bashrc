@@ -377,6 +377,10 @@ log_updates() {
   fi
 }
 
+function connect_server() {
+  $HOME/.config/scripts/server.sh $1 $2
+}
+
 export MANPAGER='nvim +Man!'
 export PATH=$PATH:/home/Arieldynamic/.spicetify
 
