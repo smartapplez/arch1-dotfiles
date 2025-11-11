@@ -248,6 +248,10 @@ owx() {
 }
 # ------------------------------------------------------------------------------
 
+function simple_weather_report() {
+  curl wttr.in
+}
+
 function git_init() {
   if [ -z "$1" ]; then
     printf "%s\n" "Please provide a directory name."
