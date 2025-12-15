@@ -1,5 +1,6 @@
 # Take a look at the mako manpage with the command:
 #   man 5 mako
+#   mako(5)
 # To view all configuration options.
 
 font=JetBrainsMonoNF
