@@ -233,7 +233,7 @@ style_root = 'bold red'
 show_always = true
 
 [hostname]
-format = '[([ ]($style)$hostname)](bold bright-cyan)'
+format = ' [([ ]($style)$hostname)](bold bright-cyan)'
 ssh_symbol = '🌐 ' #   |
 style = 'bold green'
 ssh_only = true
