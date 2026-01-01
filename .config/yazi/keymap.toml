@@ -1,6 +1,6 @@
 [[mgr.prepend_keymap]]
 on   = [ "g", "w" ]
-run  = "cd /home/Arieldynamic/GOOGLE-DRIVE/School-Drive/4_TAMU_Files/7_Fall_2025_Semester_Files"
+run  = "cd /home/Arieldynamic/GOOGLE-DRIVE/School-Drive/4_TAMU_Files/8_Spring_2026_Semester_Files/"
 desc = "Go to WORK_DIR"
 
 [[mgr.prepend_keymap]]
