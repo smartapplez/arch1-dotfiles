@@ -1,4 +1,4 @@
-set number
+set number relativenumber
 
 set clipboard=unnamedplus
 let g:clipboard = {
