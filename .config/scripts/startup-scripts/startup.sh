@@ -3,7 +3,7 @@
 PROFILE=$(rofi -dmenu -p " " -theme $HOME/.config/rofi/launchers/type-2/style-1.rasi <<<$'Work Obsidian\nWork Xournal\nGaming')
 
 # Load browser env configs
-if [-r "$HOME/.config/startup-config/chrome-env.env" ]; then
+if [ -r "$HOME/.config/startup-config/chrome-env.env" ]; then
   # Avoid leaking secrets if xtrace is on
   case $- in *x*) set +x ;; esac
   set -a # auto-export all vars defined while set
