@@ -98,3 +98,8 @@ image_delay = 100
 on   = "!"
 run  = 'shell "$SHELL" --block'
 desc = "Open shell here"
+
+#In case for dragon-drop option
+#[[mgr.prepend_keymap]]
+#on  = "<C-n>"
+#run = "shell -- dragon -x -i -T %h"
