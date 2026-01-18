@@ -1,8 +1,8 @@
 [filechooser]
-cmd=yazi-wrapper.sh
+cmd=$HOME/.config/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
 default_dir=$HOME
 ; Uncomment and edit the line below to change the terminal emulator command
-env=TERMCMD=foot -T "terminal filechooser"
+; env=TERMCMD=foot -T "terminal filechooser"
 
 ; Mode must be one of 'suggested', 'default', or 'last'.
 open_mode=suggested

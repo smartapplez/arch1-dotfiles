@@ -2,10 +2,14 @@
 #
 # GUI Screenshot Tool for Wayland Using Zenity, Grim and Slurp
 # Last Modification: Thu Nov 14 18:05:37 PM WET 2024
-#
+# This now includes wayfreeze into the screenshot tool
 
-TMP_DIR=/home/Arieldynamic/Pictures/Screenshots/
+DEFAULT_SAVE_DIR=/home/Arieldynamic/Pictures/Screenshots
 DEFAULT_FILENAME=Screenshot-From-$(date +%Y-%m-%d-%H-%M-%S).png
+DEFAULT_FILE_PATH=$DEFAULT_SAVE_DIR/$DEFAULT_FILENAME
+
+TMP_DIR=/tmp
+TMP_FILE_PATH=$TMP_DIR/$DEFAULT_FILENAME
 
 CHOICE=$(zenity --width=450 --height=400 --title "Screenshot" \
   --text "Take a screenshot of" \
@@ -21,21 +25,24 @@ CHOICE=$(zenity --width=450 --height=400 --title "Screenshot" \
 
 case $CHOICE in
 "1 whole screen --> save to file")
-  sleep 0.5 && grim "$TMP_DIR/$DEFAULT_FILENAME"
+  sleep 0.5 && grim "${DEFAULT_FILE_PATH}"
   ;;
 "2 part of screen --> save to file")
-  sleep 0.5 && slurp | grim -g - "$TMP_DIR/$DEFAULT_FILENAME"
+  # sleep 0.5 && grim -g "$(slurp)" "$DEFAULT_SAVE_DIR/$DEFAULT_FILENAME"
+  sleep 0.5 && wayfreeze --after-freeze-cmd "slurp | grim -g - "${DEFAULT_FILE_PATH}"; killall wayfreeze"
   ;;
 "3 whole screen --> clipboard")
-  grim -g - - | wl-copy
+  sleep 0.5 && grim - | wl-copy
   exit
   ;;
 "4 part of screen --> clipboard")
-  slurp | grim -g - - | wl-copy
+  sleep 0.5 && wayfreeze --after-freeze-cmd 'grim -g "$(slurp)" - | wl-copy; killall wayfreeze'
   exit
   ;;
 "5 part of screen --> edit --> clipboard")
-  grim -g "$(slurp)" - | swappy -f - -o - | wl-copy
+  # grim -g "$(slurp)" - | swappy -f - -o - | wl-copy
+  sleep 0.5 && wayfreeze --after-freeze-cmd "slurp | grim -g - "${TMP_FILE_PATH}"; killall wayfreeze"
+  swappy -f $TMP_FILE_PATH -o - | wl-copy
   exit
   ;;
 "")
@@ -49,7 +56,7 @@ FILE=$(zenity --file-selection --title="Select a File" --filename=$DEFAULT_FILEN
 
 case $? in
 0)
-  mv "$TMP_DIR/$DEFAULT_FILENAME" $FILE
+  mv "$DEFAULT_SAVE_DIR/$DEFAULT_FILENAME" $FILE
   ;;
 1) ;;
 -1)

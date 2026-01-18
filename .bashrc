@@ -371,7 +371,7 @@ log_updates() {
   # The 2>&1 redirects standard error (2) to standard output (1),
   # ensuring any error messages from checkupdates are also logged.
   echo "Running checkupdates and logging output to: $LOG_FILE"
-  checkupdates >"$LOG_FILE" 2>&1
+  checkupdates >>"$LOG_FILE" 2>&1
 
   # Check the exit status of the last command (checkupdates)
   if [ $? -eq 0 ]; then
