@@ -10,3 +10,5 @@ x-scheme-handler/webcal=google-chrome.desktop
 application/pdf=sioyek.desktop
 image/jpeg=qimgv.desktop
 image/png=qimgv.desktop
+video/mp4=vlc.desktop
+video/mov=vlc.desktop
