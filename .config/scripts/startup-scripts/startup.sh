@@ -1,6 +1,8 @@
 #!/bin/bash
 
-PROFILE=$(rofi -dmenu -p " " -theme $HOME/.config/rofi/launchers/type-2/style-1.rasi <<<$'Work Obsidian\nWork Xournal\nGaming')
+PROFILE=$(rofi -dmenu -p " " \
+  -theme ~/.config/scripts/startup-scripts/startup-dmenu-style.rasi \
+  <<<$'1 Work Obsidian\n2 Work Xournal\n3 Gaming')
 
 # Load browser env configs
 if [ -r "$HOME/.config/startup-config/chrome-env.env" ]; then
@@ -13,7 +15,7 @@ fi
 
 # Launch apps based on selected profile
 case "$PROFILE" in
-"Work Obsidian")
+"1 Work Obsidian")
   hyprctl dispatch exec [workspace 1 silent] discord
   hyprctl dispatch exec [workspace 1 silent] spotify
   hyprctl dispatch exec [workspace 2 silent] "google-chrome-stable --profile-directory="Default" file:///home/Arieldynamic/.dotfiles/.config/scripts/startup-scripts/startup-chrome-supplements/default-tab.html"
@@ -21,7 +23,7 @@ case "$PROFILE" in
   hyprctl dispatch exec [workspace special:magic silent] "google-chrome-stable --profile-directory="${WORK_ACCOUNT_NAME}" file:///home/Arieldynamic/.dotfiles/.config/scripts/startup-scripts/startup-chrome-supplements/work-tab.html"
   hyprctl dispatch exec [workspace 4 silent] obsidian
   ;;
-"Work Xournal")
+"2 Work Xournal")
   hyprctl dispatch exec [workspace 1 silent] discord
   hyprctl dispatch exec [workspace 1 silent] spotify
   hyprctl dispatch exec [workspace 2 silent] "google-chrome-stable --profile-directory="Default" file:///home/Arieldynamic/.dotfiles/.config/scripts/startup-scripts/startup-chrome-supplements/default-tab.html"
@@ -29,7 +31,7 @@ case "$PROFILE" in
   hyprctl dispatch exec [workspace special:magic silent] "google-chrome-stable --profile-directory="${WORK_ACCOUNT_NAME}" file:///home/Arieldynamic/.dotfiles/.config/scripts/startup-scripts/startup-chrome-supplements/work-tab.html"
   hyprctl dispatch exec [workspace 4 silent] xournalpp
   ;;
-Gaming)
+"3 Gaming")
   hyprctl dispatch exec [workspace 1 silent] discord
   hyprctl dispatch exec [workspace 1 silent] spotify
   hyprctl dispatch exec [workspace 2 silent] "google-chrome-stable --profile-directory="Default" file:///home/Arieldynamic/.dotfiles/.config/scripts/startup-scripts/startup-chrome-supplements/default-tab.html"
