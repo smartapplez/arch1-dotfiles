@@ -381,6 +381,28 @@ log_updates() {
   fi
 }
 
+log_updates_yay() {
+  # Get the current date in YYYY-MM-DD format
+  local DATE_TAG=$(date +%F)
+
+  # Define the target directory and file path
+  local LOG_DIR="$HOME/Documents/upgrade-logs"
+  local LOG_FILE="$LOG_DIR/$DATE_TAG-yay-syu.txt"
+
+  # Ensure the log directory exists. -p flag prevents error if directory already exists.
+  echo "Ensuring log directory exists: $LOG_DIR"
+  mkdir -p "$LOG_DIR"
+
+  echo "Running yay... Make sure to quit the program before proceeding to properly log via tee."
+  yay | tee "$LOG_FILE"
+
+  if [ $? -eq 0 ]; then
+    echo "Successfully logged update information."
+  else
+    echo "Error or Warning during update check. Check $LOG_FILE for details."
+  fi
+}
+
 function connect_server() {
   $HOME/.config/scripts/server.sh $1 $2
 }
