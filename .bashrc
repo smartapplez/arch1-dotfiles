@@ -22,6 +22,10 @@ alias bye='exit'
 export EDITOR=nvim
 PS1='[\u@\h \W]\$ '
 
+# History size of 10k lines
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
 export TERMINAL=ghostty
 
 function y() {
