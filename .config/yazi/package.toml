@@ -4,6 +4,11 @@ rev = "4b027c7"
 hash = "dd97eede8e20e59cd2604e8006e470e2"
 
 [[plugin.deps]]
+use = "KKV9/compress"
+rev = "cb6e8ec"
+hash = "424ada4807b20ccd4fc85d1d7c26d1e4"
+
+[[plugin.deps]]
 use = "dedukun/relative-motions"
 rev = "ce2e890"
 hash = "23915860e59348bf4166778bb0e606f7"
