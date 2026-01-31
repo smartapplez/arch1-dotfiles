@@ -12,3 +12,5 @@ image/jpeg=qimgv.desktop
 image/png=qimgv.desktop
 video/mp4=vlc.desktop
 video/mov=vlc.desktop
+audio/ogg=vlc.desktop
+application/epub+zip=sioyek.desktop
