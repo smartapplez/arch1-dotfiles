@@ -417,3 +417,7 @@ export PATH=$PATH:/home/Arieldynamic/.spicetify
 # Created by `pipx` on 2025-04-20 15:45:28
 export PATH="$PATH:/home/Arieldynamic/.local/bin"
 eval "$(zoxide init bash)"
+
+if [ -d /opt/intelFPGA/25.1/quartus/sopc_builder/bin ]; then
+  export QSYS_ROOTDIR="/opt/intelFPGA/25.1/quartus/sopc_builder/bin"
+fi
