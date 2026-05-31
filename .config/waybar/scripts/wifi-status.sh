@@ -99,6 +99,13 @@ else
     awk -F: '{print $1}')
 
   if [ -n "$active_device" ]; then
+
+    # Remove the ethernet adapter information because we are just focused on wifi_info
+    if [[ "$active_device" == *"enp7s0"* ]]; then
+      active_device=${active_device/enp7s0/}
+      active_device=$(echo $active_device)
+    fi
+
     output=$(nmcli -e no -g ip4.address,ip4.gateway,general.hwaddr device show "$active_device")
 
     ip_address=$(echo "$output" | sed -n '1p')
