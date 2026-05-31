@@ -1,7 +1,7 @@
 #
 # ~/.bashrc
 #
-export STARSHIP_CONFIG="/home/Arieldynamic/.config/starship/starship.toml"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init bash)"
 
 # If not running interactively, don't do anything
@@ -50,6 +50,10 @@ function cpwdx() {
 
 function cd() {
   builtin cd "$@" && ls
+}
+
+function lcd() {
+  builtin cd "$@"
 }
 
 function hg() {
@@ -412,12 +416,18 @@ function connect_server() {
 }
 
 export MANPAGER='nvim +Man!'
-export PATH=$PATH:/home/Arieldynamic/.spicetify
+export PATH=$PATH:${HOME}/.spicetify
 
 # Created by `pipx` on 2025-04-20 15:45:28
-export PATH="$PATH:/home/Arieldynamic/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 eval "$(zoxide init bash)"
 
 if [ -d /opt/intelFPGA/25.1/quartus/sopc_builder/bin ]; then
   export QSYS_ROOTDIR="/opt/intelFPGA/25.1/quartus/sopc_builder/bin"
+  export QUARTUS_ROOTDIR=$QSYS_ROOTDIR
 fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/Arieldynamic/.lmstudio/bin"
+# End of LM Studio CLI section
+
