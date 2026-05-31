@@ -14,3 +14,5 @@ video/mp4=vlc.desktop
 video/mov=vlc.desktop
 audio/ogg=vlc.desktop
 application/epub+zip=sioyek.desktop
+application/x-xopp=com.github.xournalpp.xournalpp.desktop
+x-scheme-handler/mailto=google-chrome.desktop
