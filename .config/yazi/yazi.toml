@@ -43,7 +43,7 @@ for  = "linux"
 desc = "QIMGV"
 
 [[opener.set-wallpaper]]
-run = 'hyprctl hyprpaper wallpaper DP-3, "$1"'
+run = 'hyprctl hyprpaper wallpaper DP-4, "$1"'
 for  = "linux"
 desc = "Set as wallpaper"
 #########################
@@ -73,6 +73,24 @@ run = 'xournalpp "$1"'
 desc = "Xournal++"
 orphan = true
 block = false
+for = "linux"
+
+[[open.prepend_rules]]
+mime = "audio/flac"
+use = [ "play", "convert-flac", "downsample-flac"]
+
+[[opener.convert-flac]]
+run = 'bulk_convert_flac_to_alac.sh "$@"'
+desc = "Convert FLAC -> ALAC iPhone"
+orphan = false
+block = true
+for = "linux"
+
+[[opener.downsample-flac]]
+run = 'bulk_downsample_flacs.sh "$@"'
+desc = "Downsample FLAC"
+orphan = false
+block = true
 for = "linux"
 
 #########################
