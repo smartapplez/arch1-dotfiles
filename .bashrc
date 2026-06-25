@@ -68,35 +68,6 @@ function hl() {
   history | less
 }
 
-# Installed jq for this function
-function weather_report() {
-
-  local response=$(curl --silent 'https://api.openweathermap.org/data/2.5/weather?id=4699066&units=imperial&appid=f7835911942b441743304c8e3a4aa0fc')
-
-  local status=$(echo $response | jq -r '.cod')
-
-  # Check for the 200 response indicating a successful API query.
-  case $status in
-
-  200)
-    printf "Location: %s %s\n" "$(echo $response | jq '.name') $(echo $response | jq '.sys.country')"
-    printf "Forecast: %s\n" "$(echo $response | jq '.weather[].description')"
-    printf "Temperature: %.1f°F\n" "$(echo $response | jq '.main.temp')"
-    printf "Temp Min: %.1f°F\n" "$(echo $response | jq '.main.temp_min')"
-    printf "Temp Max: %.1f°F\n" "$(echo $response | jq '.main.temp_max')"
-    printf "Alerts  :" "$(echo $response | jq '.alerts')\n"
-    ;;
-  401)
-    echo "401 error"
-    ;;
-  *)
-    echo "error"
-    ;;
-
-  esac
-
-}
-
 # Load OpenWeather env (quietly, only if readable)
 if [ -r "$HOME/.config/owx/owx.env" ]; then
   # Avoid leaking secrets if xtrace is on
@@ -348,7 +319,8 @@ dndstatus() {
 alias get_temperature='hyprctl hyprsunset temperature'
 
 function cdcp() {
-  cd $(wl-paste)
+  echo "$(wl-paste)"
+  cd "$(wl-paste)"
 }
 
 function tmux-attach() {
@@ -430,4 +402,3 @@ fi
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/home/Arieldynamic/.lmstudio/bin"
 # End of LM Studio CLI section
-
