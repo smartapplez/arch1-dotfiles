@@ -387,6 +387,11 @@ function connect_server() {
   $HOME/.config/scripts/server.sh $1 $2
 }
 
+function esp_idf() {
+  printf "\n\e[1;34midf_tools.py to your current PATH.\nYou will have to do this in every terminal\nwhere you want to use ESP-IDF.\e[0m\n\n"
+  source /opt/esp-idf/export.sh
+}
+
 export MANPAGER='nvim +Man!'
 export PATH=$PATH:${HOME}/.spicetify
 
