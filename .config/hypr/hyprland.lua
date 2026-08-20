@@ -9,7 +9,7 @@ require("monitors")
 -- ### MY PROGRAMS ###
 -- ###################
 TERMINAL = "ghostty"
-FILE_MANAGER = TERMINAL .. "-e yazi"
+FILE_MANAGER = TERMINAL .. " -e yazi"
 MENU = "sh ~/.config/rofi/launchers/type-2/launcher.sh"
 
 -- #################

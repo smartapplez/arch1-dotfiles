@@ -34,105 +34,153 @@ local screenshotTool = "sh ~/.config/hypr/screenshot-dmenu.sh"
 local emojiPicker = "sh ~/.config/rofi/scripts/rofi-emoji-picker-launcher.sh"
 
 -- Application & Window Binds
-hl.bind(mainMod, "RETURN", "exec", TERMINAL)
-hl.bind(mainMod, "C", "killactive")
-hl.bind(mainMod .. " SHIFT", "Q", "exit")
-hl.bind(mainMod, "E", "exec", FILE_MANAGER)
-hl.bind(mainMod .. " SHIFT", "F", "togglefloating")
-hl.bind(mainMod, "R", "exec", MENU)
-hl.bind(mainMod, "P", "pseudo")
-hl.bind(mainMod .. " SHIFT", "S", "exec", screenshotTool)
-hl.bind(mainMod .. " SHIFT", "P", "exec", "sh ~/.config/waybar/scripts/power-menu.sh")
-hl.bind(mainMod, "A", "exec", "qjackctl")
-hl.bind(mainMod, "PERIOD", "exec", emojiPicker)
+hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(TERMINAL))
+hl.bind(mainMod .. " + C", hl.dsp.window.kill({ window = "activewindow" }))
+hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exit())
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(FILE_MANAGER))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle", window = "activewindow" }))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(MENU))
+-- hl.bind(mainMod, "P", "pseudo")
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(screenshotTool))
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("sh ~/.config/waybar/scripts/power-menu.sh"))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("qjackctl"))
+hl.bind(mainMod .. " + PERIOD", hl.dsp.exec_cmd(emojiPicker))
 
 -- Focus Navigation (Arrow keys)
-hl.bind(mainMod, "left", "movefocus", "l")
-hl.bind(mainMod, "right", "movefocus", "r")
-hl.bind(mainMod, "up", "movefocus", "u")
-hl.bind(mainMod, "down", "movefocus", "d")
+hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "l" }))
+hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "r" }))
+hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "u" }))
+hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "d" }))
 
 -- Focus Navigation (Vim keys)
-hl.bind(mainMod, "h", "movefocus", "l")
-hl.bind(mainMod, "l", "movefocus", "r")
-hl.bind(mainMod, "k", "movefocus", "u")
-hl.bind(mainMod, "j", "movefocus", "d")
+hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "l" }))
+hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "r" }))
+hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "u" }))
+hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "d" }))
 
 -- Move Window (Arrow keys)
-hl.bind(mainMod .. " SHIFT", "left", "movewindow", "l")
-hl.bind(mainMod .. " SHIFT", "right", "movewindow", "r")
-hl.bind(mainMod .. " SHIFT", "up", "movewindow", "u")
-hl.bind(mainMod .. " SHIFT", "down", "movewindow", "d")
+hl.bind(
+	mainMod .. " + SHIFT + left",
+	hl.dsp.window.move({ direction = "l", group_aware = false, window = "activewindow" })
+)
+hl.bind(
+	mainMod .. " + SHIFT + right",
+	hl.dsp.window.move({ direction = "r", group_aware = false, window = "activewindow" })
+)
+hl.bind(
+	mainMod .. " + SHIFT + up",
+	hl.dsp.window.move({ direction = "u", group_aware = false, window = "activewindow" })
+)
+hl.bind(
+	mainMod .. " + SHIFT + down",
+	hl.dsp.window.move({ direction = "d", group_aware = false, window = "activewindow" })
+)
 
 -- Move Window (Vim keys)
-hl.bind(mainMod .. " SHIFT", "H", "movewindow", "l")
-hl.bind(mainMod .. " SHIFT", "L", "movewindow", "r")
-hl.bind(mainMod .. " SHIFT", "K", "movewindow", "u")
-hl.bind(mainMod .. " SHIFT", "J", "movewindow", "d")
+hl.bind(
+	mainMod .. " + SHIFT + H",
+	hl.dsp.window.move({ direction = "l", group_aware = false, window = "activewindow" })
+)
+hl.bind(
+	mainMod .. " + SHIFT + L",
+	hl.dsp.window.move({ direction = "r", group_aware = false, window = "activewindow" })
+)
+hl.bind(
+	mainMod .. " + SHIFT + K",
+	hl.dsp.window.move({ direction = "u", group_aware = false, window = "activewindow" })
+)
+hl.bind(
+	mainMod .. " + SHIFT + J",
+	hl.dsp.window.move({ direction = "d", group_aware = false, window = "activewindow" })
+)
 
 -- Resize Window (Arrow keys)
-hl.bind(mainMod .. " CTRL", "left", "resizeactive", "-20 0")
-hl.bind(mainMod .. " CTRL", "right", "resizeactive", "20 0")
-hl.bind(mainMod .. " CTRL", "up", "resizeactive", "0 -20")
-hl.bind(mainMod .. " CTRL", "down", "resizeactive", "0 20")
+hl.bind(
+	mainMod .. " + CTRL + left",
+	hl.dsp.window.resize({ x = -20, y = 0, relative = true, window = "activewindow" }),
+	{ repeating = true }
+)
+hl.bind(
+	mainMod .. " + CTRL + right",
+	hl.dsp.window.resize({ x = 20, y = 0, relative = true, window = "activewindow" }),
+	{ repeating = true }
+)
+hl.bind(
+	mainMod .. " + CTRL + up",
+	hl.dsp.window.resize({ x = 0, y = -20, relative = true, window = "activewindow" }),
+	{ repeating = true }
+)
+hl.bind(
+	mainMod .. " + CTRL + down",
+	hl.dsp.window.resize({ x = 0, y = 20, relative = true, window = "activewindow" }),
+	{ repeating = true }
+)
 
 -- Resize Window (Vim keys)
-hl.bind(mainMod .. " CTRL", "H", "resizeactive", "-20 0")
-hl.bind(mainMod .. " CTRL", "L", "resizeactive", "20 0")
-hl.bind(mainMod .. " CTRL", "K", "resizeactive", "0 -20")
-hl.bind(mainMod .. " CTRL", "J", "resizeactive", "0 20")
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.window.resize({ x = -20, y = 0, relative = true, window = "activewindow" }))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.window.resize({ x = 20, y = 0, relative = true, window = "activewindow" }))
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.window.resize({ x = 0, y = -20, relative = true, window = "activewindow" }))
+hl.bind(mainMod .. " + CTRL + J", hl.dsp.window.resize({ x = 0, y = 20, relative = true, window = "activewindow" }))
 
 -- Submap: Resize Mode
-hl.bind(mainMod .. " SHIFT", "R", "exec", 'hyprctl notify 0 2000 "rgb(ffea00)" "fontsize:20 Resize Mode"')
-hl.bind(mainMod .. " SHIFT", "R", "submap", "resize")
+hl.define_submap("resize", function()
+	-- Set repeating binds for resizing the active window.
+	hl.dispatch(hl.dsp.exec_cmd('hyprctl notify 0 2000 "rgb(ffea00)" "fontsize:20 Resize Mode"'))
+	hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+	hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+	hl.bind("up", hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
+	hl.bind("down", hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
 
-hl.submap("resize")
-hl.binde("", "right", "resizeactive", "10 0")
-hl.binde("", "left", "resizeactive", "-10 0")
-hl.binde("", "up", "resizeactive", "0 -10")
-hl.binde("", "down", "resizeactive", "0 10")
+	hl.bind("L", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
+	hl.bind("H", hl.dsp.window.resize({ x = -20, y = 0, relative = true }), { repeating = true })
+	hl.bind("K", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
+	hl.bind("J", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
 
-hl.binde("", "H", "resizeactive", "-20 0")
-hl.binde("", "L", "resizeactive", "20 0")
-hl.binde("", "K", "resizeactive", "0 -20")
-hl.binde("", "J", "resizeactive", "0 20")
+	hl.bind("SHIFT + L", hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { repeating = true })
+	hl.bind("SHIFT + H", hl.dsp.window.resize({ x = -100, y = 0, relative = true }), { repeating = true })
+	hl.bind("SHIFT + K", hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true })
+	hl.bind("SHIFT + J", hl.dsp.window.resize({ x = 0, y = -100, relative = true }), { repeating = true })
 
-hl.binde("SHIFT", "H", "resizeactive", "-100 0")
-hl.binde("SHIFT", "L", "resizeactive", "100 0")
-hl.binde("SHIFT", "K", "resizeactive", "0 -100")
-hl.binde("SHIFT", "J", "resizeactive", "0 100")
-
-hl.binde("", "escape", "exec", 'hyprctl notify 0 2000 "rgb(ffea00)" "fontsize:20 Normal Mode"')
-hl.binde("", "escape", "submap", "reset")
-hl.submap("reset")
+	-- Use `reset` to go back to the global submap
+	hl.bind("escape", hl.dsp.submap("reset"))
+	hl.bind("escape", hl.dsp.exec_cmd('hyprctl notify 0 2000 "rgb(ffea00)" "fontsize:20 Normal Mode"'))
+end)
 
 -- Workspaces & Navigation
-for i = 1, 9 do
-	hl.bind(mainMod, tostring(i), "workspace", tostring(i))
-	hl.bind(mainMod .. " SHIFT", tostring(i), "movetoworkspace", tostring(i))
-end
-hl.bind(mainMod, "0", "workspace", "10")
-hl.bind(mainMod .. " SHIFT", "0", "movetoworkspace", "10")
 
-hl.bind(mainMod, "F", "fullscreen")
-hl.bind(mainMod, "W", "togglespecialworkspace", "magic")
-hl.bind(mainMod .. " SHIFT", "W", "movetoworkspace", "special:magic")
+for i = 1, 9 do
+	hl.bind(mainMod .. " + " .. tostring(i), hl.dsp.focus({ workspace = i }))
+	hl.bind(
+		mainMod .. " + SHIFT + " .. tostring(i),
+		hl.dsp.window.move({ workspace = i, follow = true, window = "activewindow" })
+	)
+end
+
+hl.bind(
+	mainMod .. " + F",
+	hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle", layout_aware = true, window = "activewindow" })
+)
+hl.bind(mainMod .. " + W", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Mouse Binds
-hl.bind(mainMod, "mouse_down", "workspace", "e+1")
-hl.bind(mainMod, "mouse_up", "workspace", "e-1")
-hl.bindm(mainMod, "mouse:272", "movewindow")
-hl.bindm(mainMod, "mouse:273", "resizewindow")
+hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+-- hl.bindm(mainMod .. " + mouse:272", "movewindow")
+-- hl.bindm(mainMod .. " + mouse:273", "resizewindow")
 
--- Media & Brightness Controls
-hl.bindel("", "XF86AudioRaiseVolume", "exec", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")
-hl.bindel("", "XF86AudioLowerVolume", "exec", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
-hl.bindel("", "XF86AudioMute", "exec", "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
-hl.bindel("", "XF86AudioMicMute", "exec", "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")
-hl.bindel("", "XF86MonBrightnessUp", "exec", "brightnessctl s 10%+")
-hl.bindel("", "XF86MonBrightnessDown", "exec", "brightnessctl s 10%-")
+-- Brightness Controls
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 10%+"))
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 10%-"))
 
-hl.bindl("", "XF86AudioNext", "exec", "playerctl next")
-hl.bindl("", "XF86AudioPause", "exec", "playerctl play-pause")
-hl.bindl("", "XF86AudioPlay", "exec", "playerctl play-pause")
-hl.bindl("", "XF86AudioPrev", "exec", "playerctl previous")
+-- Media Controls
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true })
+
+-- Requires playerctl
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
